@@ -1,0 +1,286 @@
+/*
+ * Smartart Weekly Timetable
+ * Override any of these variables in your theme, e.g.:
+ * .sawt { --sawt-primary: var(--color-primary); }
+ */
+.sawt {
+	--sawt-primary: #2f7f7b;
+	--sawt-primary-light: #e8f7f7;
+	--sawt-heading: #343a40;
+	--sawt-body: #5c656d;
+	--sawt-border: #b9c3cb;
+	--sawt-line: #dddddd;
+	--sawt-soft: #f4f6f9;
+	--sawt-bg: #ffffff;
+	--sawt-radius: 12px;
+	--sawt-row: 30px;
+	--sawt-font-heading: inherit;
+	--sawt-c0: #bfe6e4;
+	--sawt-c1: #fad9b5;
+	--sawt-c2: #c9d8f5;
+	--sawt-c3: #f6cbd6;
+	--sawt-c4: #d8e8b4;
+	--sawt-c5: #e0d3f5;
+	--sawt-c6: #e9ecef;
+
+	box-sizing: border-box;
+	width: 100%;
+	color: var(--sawt-body);
+}
+
+.sawt *,
+.sawt *::before,
+.sawt *::after {
+	box-sizing: border-box;
+}
+
+.sawt-notice {
+	padding: 16px;
+	text-align: center;
+}
+
+.sawt-week {
+	margin: 0 0 14px;
+	font-family: var(--sawt-font-heading);
+	font-size: 1.05rem;
+	font-weight: 700;
+	color: var(--sawt-primary);
+}
+
+/* Color legend */
+.sawt-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0 0 18px;
+	padding: 0;
+	list-style: none;
+}
+
+.sawt-chip {
+	margin: 0;
+	padding: 6px 14px;
+	border-radius: 999px;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--sawt-heading);
+}
+
+/* Color classes (position of the name in the legend row of the sheet) */
+.sawt-c0 { background: var(--sawt-c0); }
+.sawt-c1 { background: var(--sawt-c1); }
+.sawt-c2 { background: var(--sawt-c2); }
+.sawt-c3 { background: var(--sawt-c3); }
+.sawt-c4 { background: var(--sawt-c4); }
+.sawt-c5 { background: var(--sawt-c5); }
+.sawt-c6 { background: var(--sawt-c6); }
+
+/* Desktop table */
+.sawt-table {
+	width: 100%;
+	margin: 0;
+	table-layout: fixed;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 1px solid var(--sawt-border);
+	border-radius: var(--sawt-radius);
+	overflow: hidden;
+	background: var(--sawt-bg);
+}
+
+.sawt-table th,
+.sawt-table td {
+	height: var(--sawt-row);
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	border: 0;
+	border-top: 1px solid var(--sawt-line);
+	border-left: 1px solid var(--sawt-line);
+}
+
+.sawt-table thead th {
+	padding: 10px 4px;
+	border: 0;
+	background: var(--sawt-primary);
+	color: #fff;
+	font-family: var(--sawt-font-heading);
+	font-size: 0.92rem;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+.sawt-table thead small {
+	display: block;
+	font-size: 0.78rem;
+	font-weight: 400;
+}
+
+.sawt-table .sawt-corner,
+.sawt-table tbody th {
+	width: 64px;
+}
+
+.sawt-table tbody th {
+	border-left: 0;
+	border-right: 1px solid var(--sawt-border);
+	background: var(--sawt-soft);
+	font-size: 0.78rem;
+	font-weight: 400;
+	color: var(--sawt-body);
+}
+
+.sawt-table tr.sawt-hour th,
+.sawt-table tr.sawt-hour td {
+	border-top-color: var(--sawt-border);
+}
+
+.sawt-table tr.sawt-hour th {
+	background: var(--sawt-primary-light);
+	font-weight: 700;
+	color: var(--sawt-heading);
+}
+
+.sawt-table tbody tr:first-child th,
+.sawt-table tbody tr:first-child td {
+	border-top: 0;
+}
+
+/* A session block (several half-hour rows merged with rowspan) */
+.sawt-table td.sawt-s {
+	padding: 4px 6px;
+	border: 0;
+	border-radius: 10px;
+	box-shadow: inset 0 0 0 3px var(--sawt-bg);
+	line-height: 1.25;
+	font-size: 0.82rem;
+	color: var(--sawt-heading);
+	overflow: hidden;
+}
+
+.sawt-table td.sawt-s strong,
+.sawt-table td.sawt-s span {
+	display: block;
+}
+
+.sawt-table td.sawt-s span {
+	font-size: 0.74rem;
+	opacity: 0.85;
+}
+
+/* Mobile list */
+.sawt-mobile {
+	display: none;
+}
+
+.sawt-tabs {
+	display: flex;
+	gap: 6px;
+	margin-bottom: 14px;
+	padding-bottom: 4px;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+
+.sawt-tabs[hidden] {
+	display: none;
+}
+
+.sawt-tabs::-webkit-scrollbar {
+	display: none;
+}
+
+.sawt-tab {
+	flex: 1 1 0;
+	min-width: 48px;
+	padding: 8px 6px;
+	border: 1px solid var(--sawt-border);
+	border-radius: 10px;
+	background: var(--sawt-bg);
+	color: var(--sawt-heading);
+	font: inherit;
+	line-height: 1.25;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sawt-tab b {
+	display: block;
+	font-family: var(--sawt-font-heading);
+	font-size: 0.85rem;
+}
+
+.sawt-tab small {
+	display: block;
+	font-size: 0.72rem;
+	color: var(--sawt-body);
+}
+
+.sawt-tab[aria-selected="true"] {
+	border-color: var(--sawt-primary);
+	background: var(--sawt-primary);
+	color: #fff;
+}
+
+.sawt-tab[aria-selected="true"] small {
+	color: #fff;
+}
+
+.sawt-tab:focus-visible {
+	outline: 2px solid var(--sawt-heading);
+	outline-offset: 2px;
+}
+
+.sawt-panel[hidden] {
+	display: none;
+}
+
+.sawt-panel-title {
+	margin: 18px 0 8px;
+	font-family: var(--sawt-font-heading);
+	font-size: 1rem;
+	color: var(--sawt-heading);
+}
+
+.sawt-js .sawt-panel-title {
+	display: none;
+}
+
+.sawt-item {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 8px;
+	padding: 12px 14px;
+	border-radius: 12px;
+	color: var(--sawt-heading);
+}
+
+.sawt-item-time {
+	min-width: 96px;
+	font-size: 0.92rem;
+	font-weight: 700;
+}
+
+.sawt-item-name {
+	font-size: 0.95rem;
+	font-weight: 600;
+}
+
+.sawt-none {
+	margin: 0;
+	padding: 22px;
+	text-align: center;
+	border: 1px dashed var(--sawt-border);
+	border-radius: 12px;
+}
+
+@media (max-width: 760px) {
+	.sawt-desktop {
+		display: none;
+	}
+
+	.sawt-mobile {
+		display: block;
+	}
+}
